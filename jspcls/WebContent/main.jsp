@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>1st JSP 파일</title>
 </head>
 <body>
-	<h1><center>index.jsp 파일</center></h1>
+	<h1><center>첫 번째 JSP 파일</center></h1>
 </body>
 </html>

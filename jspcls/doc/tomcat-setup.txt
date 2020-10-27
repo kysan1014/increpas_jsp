@@ -1,0 +1,119 @@
+tomcat 설정
+
+	1. 톰캣의 환경변수를 만들고 환경변수를 Path에 등록한다
+		
+			C:\app\apache-tomcat-8.5.59
+			CATALINA_HOME : C:\app\apache-tomcat-8.5.59
+			CATALINA_BASE : C:\app\apache-tomcat-8.5.59
+			
+			
+	2. 톰캣 압축을 풀어놓은 폴더로 이동해서 conf 폴더를 찾는다
+	
+	
+	3. server.xml에서 Connector 태그 수정한다
+
+	    <Connector port="80"
+			   protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" 
+			   URIEncoding = "UTF-8"/>
+	
+	
+	4. web.xml에서 
+	
+		4.1 setCharacterEncodingFilter 태그를 수정한다
+	
+			<filter>
+		        <filter-name>setCharacterEncodingFilter</filter-name>
+		        <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+		        <init-param>
+		            <param-name>encoding</param-name>
+		            <param-value>UTF-8</param-value>
+		        </init-param>
+		<!--
+		        <async-supported>true</async-supported>
+		-->
+		    </filter>
+		
+		4.2 setCharacterEncodingFilter의 filter-mapping 태그 주석 해제한다
+		
+			<filter-mapping>
+		        <filter-name>setCharacterEncodingFilter</filter-name>
+		        <url-pattern>/*</url-pattern>
+		    </filter-mapping>
+		
+		4.3 welcome 파일로 등록하고 싶은 파일이 있다면 welcome-file-list 태그를 수정한다
+		
+			<welcome-file-list>
+		        <welcome-file>index.html</welcome-file>
+		        <welcome-file>index.htm</welcome-file>
+		        <welcome-file>index.jsp</welcome-file>
+		        <welcome-file>등록할 파일</welcome-file>
+		    </welcome-file-list>
+
+
+	5. context.xml에는 
+		해당 프로젝트만의 특정한 서버 설정을 포함하는 경우에 WatchedResource 태그를 추가한다
+	
+		<WatchedResource>WEB-INF/web.xml</WatchedResource>
+		<WatchedResource>파일경로</WatchedResource>
+		
+		5.1 context.xml에  META-INF/context.xml를 추가한다
+		
+			<WatchedResource>META-INF/context.xml</WatchedResource>
+	
+
+	6. tomcat-users.xml에서 role, user 수정 및 추가
+	
+		  <role rolename="tomcat"/>
+		  <role rolename="role1"/>
+		  <role rolename="manager"/>
+		  <role rolename="manager-gui"/>
+		  <role rolename="manager-script"/>
+		  <role rolename="manager-jmx"/>
+		  <role rolename="manager-status"/>
+		  <role rolename="admin"/>
+		  <role rolename="admin-gui"/>
+		  <role rolename="admin-script"/>
+		  <user username="tomcat" password="increpas" roles="tomcat, manager-gui, admin-gui"/>
+		  <user username="both" password="increpas" roles="tomcat,role1"/>
+		  <user username="role1" password="increpas" roles="role1"/>
+		  <user username="admin" password="increpas" roles="tomcat, admin, manager, manager-gui, manager-script, manager-jmx, manager-status, admin-gui, admin-script"/>
+		
+		http://localhost에서 어플리케이션을 배포 및 관리할 계정을 관리하는 xml
+		
+		
+tomcat으로 서비스 배포하기
+
+		1. 프로젝트 파일을 war 확장자로 export한다
+		
+		2. war 파일을 C:\app\apache-tomcat-8.5.59\webapps에 넣는다
+		
+		3. cmd에서 startup.bat 입력
+		
+		4. 종료시 shutdown.bat 입력
+		
+
+------------------------------------------------------------------------
+
+Connection Pool 설정 (jdbc 접속을 동시에 여러 개를 할 수 있도록 함)
+
+	1. META-INF\context.xml 생성후 입력
+		-- DataSource 클래스가 JDBC 세션을 관리함
+
+	<?xml version="1.0" encoding="UTF-8"?>
+	
+	<Context>
+		<Resource
+			name="jdbc/TestDB"
+			auth="Container"
+			type="javax.sql.DataSource"
+			maxTotal="8"
+			maxIdle="2" // 비상시 유휴 자원 수
+			maxWaitMillis="10000"
+			username="hello"
+			password="hello"
+			driverClassName="oracle.jdbc.driver.OracleDriver"
+			url="jdbc:oracle:thisn:@localhost:1521:orcl"
+		/>
+	</Context>
