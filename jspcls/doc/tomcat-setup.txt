@@ -117,3 +117,11 @@ Connection Pool 설정 (jdbc 접속을 동시에 여러 개를 할 수 있도록
 			url="jdbc:oracle:thisn:@localhost:1521:orcl"
 		/>
 	</Context>
+	
+	2. BuildPath에서 ojdbc6.jar 넣기
+	
+JSP Servlet 설정
+
+	1. BuildPath에서 tomcat\lib의 jsp-api.jar, servelt-api.jar 넣기
+	
+	2. properties - project facet에서 
