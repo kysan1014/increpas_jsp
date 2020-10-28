@@ -1,0 +1,33 @@
+.mw500 {
+	max-width: 500px;
+}
+.mw550 {
+	max-width: 550px;
+}
+.mw600 {
+	max-width: 600px;
+}
+.mw650 {
+	max-width: 650px;
+}
+.mw700 {
+	max-width: 700px;
+}
+.mw750 {
+	max-width: 750px;
+}
+.mw800 {
+	max-width: 800px;
+}
+
+.txt14 {
+	font-size: 14pt;
+}
+
+.txt16 {
+	font-size: 16pt;
+}
+
+.clsbold {
+	font-weight: bold;
+}
