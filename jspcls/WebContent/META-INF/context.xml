@@ -13,4 +13,16 @@
 		driverClassName="oracle.jdbc.driver.OracleDriver"
 		url="jdbc:oracle:thin:@localhost:1521:orcl"
 	/>
+	<Resource
+		name="jdbc/ScottDB"
+		auth="Container"
+		type="javax.sql.DataSource"
+		maxTotal="8"
+		maxIdle="2"
+		maxWaitMillis="10000"
+		username="scott"
+		password="tiger"
+		driverClassName="oracle.jdbc.driver.OracleDriver"
+		url="jdbc:oracle:thin:@localhost:1521:orcl"
+	/>
 </Context>
