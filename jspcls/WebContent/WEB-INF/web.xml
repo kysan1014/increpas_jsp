@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app 
 	version="3.1" 
-	xmlns:javaee="http://xmlns.jcp.org/xml/ns/javaee" 
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
 						http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd ">
 	<!-- 
-		jspcls 프로젝트에 한하여 적용시킬 설정을 지정하는 파일
-	 -->
-
-<!-- css, js, img 서블릿 매핑 -->
-
+		이 파일은 jspcls 프로젝트에 한해서 적용시킬
+		설정을 지정하는 파일이다.
+	-->
+	
+	<!-- css, js, img 서블릿 매핑 -->
 	<!-- 서블릿 정의 -->
 	<servlet>
 		<servlet-name>resrc</servlet-name>
@@ -24,6 +24,4 @@
 		<url-pattern>/js/*</url-pattern>
 		<url-pattern>/img/*</url-pattern>
 	</servlet-mapping>
-
 </web-app>
-

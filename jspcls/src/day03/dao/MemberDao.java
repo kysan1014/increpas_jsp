@@ -6,12 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import day03.db.ClsJDBC;
 import day03.sql.MemberSQL;
+import db.ClsDBCP;
 
 public class MemberDao {
 
-	private ClsJDBC jdbc;
+//	private ClsJDBC db;
+	private ClsDBCP db;
 	private MemberSQL sql;
 	private Connection conn;
 	private Statement stmt;
@@ -19,15 +20,16 @@ public class MemberDao {
 	private ResultSet rs;
 
 	public MemberDao() {
-		jdbc = new ClsJDBC();
+//		db = new ClsJDBC();
+		db = new ClsDBCP();
 		sql = new MemberSQL();
 	}
 
 	public int getLoginCnt(String id, String pw) {
 		int cnt = -1;
 		try {
-			conn = jdbc.getConnection();
-			psmt = jdbc.getPreparedStatement(conn, sql.getSQL(sql.SEL_LOGIN_CNT));
+			conn = db.getConnection();
+			psmt = db.getPreparedStatement(conn, sql.getSQL(sql.SEL_LOGIN_CNT));
 			psmt.setString(1, id);
 			psmt.setString(2, pw);
 			rs = psmt.executeQuery();
@@ -43,16 +45,16 @@ public class MemberDao {
 	
 	public void close() {
 		if (rs != null) {
-			jdbc.close(rs);
+			db.close(rs);
 		}
 		if (psmt != null) {
-			jdbc.close(psmt);
+			db.close(psmt);
 		}
 		if (stmt != null) {
-			jdbc.close(stmt);
+			db.close(stmt);
 		}
 		if (conn != null) {
-			jdbc.close(conn);
+			db.close(conn);
 		}
 	}
 }
