@@ -1,4 +1,4 @@
-package controller.resources;
+package day04;
 
 import java.io.IOException;
 
@@ -9,24 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/*
-@WebServlet(
-		urlPatterns = {"/css/*", "/js/*", "/img/*"}
-		)*/
-public class ResourceFileSupplier extends HttpServlet {
+@WebServlet("/day04/fwdTest.cls")
+public class Test01 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
-	private static final long serialVersionUID = 6903099272507722349L;
-	private final String RESOURCE_DIR = "/WEB-INF/resources";
-	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		String uri = request.getRequestURI();
-		String spath = uri.substring(uri.indexOf('/', 1));
-
-		RequestDispatcher rd = request.getRequestDispatcher(RESOURCE_DIR + spath);
+		String view = "/WEB-INF/views/day04/Test01.jsp";
+		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
-
 	}
+
 }
