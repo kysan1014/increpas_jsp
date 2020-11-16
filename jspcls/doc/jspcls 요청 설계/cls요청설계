@@ -1,0 +1,41 @@
+#JSTL 테스트 폼보기 요청
+#  forEach1 요청
+요청내용 : /jspcls/test/foreach01.cls
+파라미터 : 무
+컨트롤러 : src.controller.test.TagTest01
+뷰	  : /WEB-INF/views/test/foreach01.jsp
+------------------------------------------------------------
+#  forEach2 요청
+요청내용 : /jspcls/test/foreach02.cls
+파라미터 : 무
+컨트롤러 : src.controller.test.TagTest02
+뷰	  : /WEB-INF/views/test/foreach02.jsp
+------------------------------------------------------------
+
+------------------------------------------------------------
+# 메인 페이지 폼보기 요청
+요청내용 : /jspcls/main.cls
+파라미터 : 무
+컨트롤러 : src.controller.ClsMain
+뷰	  : /WEB-INF/views/main.jsp
+------------------------------------------------------------
+# 로그인 페이지 폼보기 요청
+요청내용 : /jspcls/member/login.cls
+파라미터 : 무
+컨트롤러 : src.controller.member.Login
+뷰	  : /WEB-INF/views/member/Login.jsp
+------------------------------------------------------------
+# 로그인 처리 요청
+요청내용 : /jspcls/member/loginProc.cls
+파라미터 : id, pw
+컨트롤러 : src.controller.member.LoginProc
+뷰	  : redirect ] 
+			성공 : /jspcls/main.cls
+			실패 : /jspcls/mamber/login.cls
+------------------------------------------------------------
+# 로그아웃 처리 요청
+요청내용 : /jspcls/member/logout.cls
+파라미터 : 무
+컨트롤러 : src.controller.member.Logout
+뷰	  : redirect ] /jspcls/member/login.cls
+------------------------------------------------------------

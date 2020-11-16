@@ -31,3 +31,23 @@
 .clsbold {
 	font-weight: bold;
 }
+
+.inblock {
+	dispaly: inline-block;
+}
+
+.w200 {
+	width: 200px;
+}
+
+.h50 {
+	height: 50px;
+}
+
+.h30 {
+	height: 30px;
+}
+
+.mgnh10 {
+	margin: 0px 10px;
+}

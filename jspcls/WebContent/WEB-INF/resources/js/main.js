@@ -1,8 +1,8 @@
 $(function() {
 	$('#lbtn').click(function() {
-		$(location).attr("href", "http://localhost:80/jspcls/day03/login.cls");
+		$(location).attr("href", "http://localhost:80/jspcls/member/login.cls");
 	})
 	$('#obtn').click(function() {
-		$(location).attr("href", "http://localhost:80/jspcls/day03/logout.cls");
+		$(location).attr("href", "http://localhost:80/jspcls/member/logout.cls");
 	})
 });

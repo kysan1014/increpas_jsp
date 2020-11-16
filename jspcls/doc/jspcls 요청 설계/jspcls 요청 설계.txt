@@ -1,81 +1,55 @@
--------------------------------------------------
-
+------------------------------------------------------------
 # 스크립트 릿 테스트 요청
-요청 내용	: /jspcls/day02/Test01.cls
-파라미터	: 무
-컨트롤러	: src.day02.Test01.java
-뷰		: /WEB-INF/views/day02/Test01.jsp
-
--------------------------------------------------
-
-# day03 forward Test
-요청 내용	: /jspcls/day03/reqRed.cls
-파라미터	: 무
-컨트롤러	: src.day03.ReqRed.java
-뷰		: /WEB-INF/views/day03/Parang.jsp
-
--------------------------------------------------
-
+요청내용 : /jspcls/day02/Test01.cls
+파라미터 : 무
+컨트롤러 : src.day02.Test01
+뷰	  : /WEB-INF/views/day02/Test01.jsp
+------------------------------------------------------------
+# day03 forard Test
+요청내용 : /jspcls/day03/reqRed.cls
+파라미터 : 무
+컨트롤러 : src.day03.ReqRed
+뷰	  : /WEB-INF/views/day03/parang.jsp
+------------------------------------------------------------
 # day03 redirect Test
-요청 내용	: /jspcls/day03/reqBlue.cls
-파라미터	: 무
-컨트롤러	: src.day03.Reqblue.java
-뷰		: redirect - /jspcls/day03/reqRed.cls
-
--------------------------------------------------
-#################################################
--------------------------------------------------
-
-# 리소스 파일 요청
-요청 내용	: /jspcls/css/*, /jspcls/js/*, /jspcls/img/*
-파라미터	: 무
-컨트롤러	: src.controller.resources.ResourceFileSupplier.java
-뷰		: /WEB-INF/resource/*
-
--------------------------------------------------
-
-# 로그인 페이지 요청
-요청 내용	: /form/login.cls
-파라미터	: 무
-컨트롤러	: src.controller.form.LoginForm.java
-뷰		: /WEB-INF/views/login/Login.jsp
-
--------------------------------------------------
-
-# 로그인 요청
-요청 내용	: /access/login.cls
-파라미터	: { "id" : "id", "pw" : "pw" }
-컨트롤러	: src.controller.LoginFrom.java
-뷰		: /WEB-INF/views/login/Login.jsp
-
--------------------------------------------------
-#################################################
--------------------------------------------------
-
+요청내용 : /jspcls/day03/reqblue.cls
+파라미터 : 무
+컨트롤러 : src.day03.ReqBlue
+뷰	  : redirect - /jspcls/day03/reqRed.cls
+------------------------------------------------------------
+------------------------------------------------------------
+# day03 resource 요청
+요청내용 : /jspcls/css/*, /jspcls/js/*, /jspcls/img/*
+파라미터 : 무
+컨트롤러 : src.controller.Resrc
+뷰	  : /WEB-INF/resources/css/*, /WEB-INF/resources/js/*, 
+		/WEB-INF/resources/img/*
+------------------------------------------------------------
+############################################################
+------------------------------------------------------------
 # 메인 페이지 폼보기 요청
-요청내용	: /jspcls/main.cls, /jspcls/
-파라미터	: 무
-컨트롤러	: src.day03.Main
-뷰	 	: /WEB-INF/views/main.jsp
-
+요청내용 : /jspcls/pre/main.cls
+파라미터 : 무
+컨트롤러 : src.day03.ClsMain
+뷰	  : /WEB-INF/views/pre/main.jsp
 ------------------------------------------------------------
 # 로그인 페이지 폼보기 요청
-요청내용	: /jspcls/day03/login.cls
-파라미터	: 무
-컨트롤러	: src.day03.Login
-뷰	 	: /WEB-INF/views/day03/Login.jsp
+요청내용 : /jspcls/day03/login.cls
+파라미터 : 무
+컨트롤러 : src.day03.Login
+뷰	  : /WEB-INF/views/day03/Login.jsp
 ------------------------------------------------------------
 # 로그인 처리 요청
-요청내용	: /jspcls/day03/loginProc.cls
-파라미터	: id, pw
-컨트롤러	: src.day03.LoginProc
-뷰		: redirect ]
-			성공 : /jspcls/main.cls
+요청내용 : /jspcls/day03/loginProc.cls
+파라미터 : id, pw
+컨트롤러 : src.day03.LoginProc
+뷰	  : redirect ] 
+			성공 : /jspcls/pre/main.cls
 			실패 : /jspcls/day03/login.cls
 ------------------------------------------------------------
 # 로그아웃 처리 요청
-요청내용	: /jspcls/day03/logout.cls
-파라미터	: 무
-컨트롤러	: src.day03.Logout
-뷰		: redirect - /jspcls/day03/login.cls
+요청내용 : /jspcls/day03/logout.cls
+파라미터 : 무
+컨트롤러 : src.day03.Logout
+뷰	  : redirect ] /jspcls/day03/login.cls
 ------------------------------------------------------------

@@ -18,7 +18,7 @@ public class LoginProc extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String mainView = "/jspcls/main.cls";
+		String mainView = "/jspcls/pre/main.cls";
 		String loginView = "/jspcls/day03/login.cls";
 		String sid = null;
 		HttpSession session = request.getSession();

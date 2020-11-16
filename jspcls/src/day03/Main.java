@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet( "/main.cls")
+@WebServlet( "/day03/main.cls")
 public class Main extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private final String MAIN_PAGE_PATH = "/WEB-INF/views/main.jsp";
+	private final String MAIN_PAGE_PATH = "/WEB-INF/views/pre/main.jsp";
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)

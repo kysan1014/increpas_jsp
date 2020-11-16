@@ -1,6 +1,8 @@
 package fileConverter.parser;
 
 import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ public class SAXParserHandler<E> extends DefaultHandler implements Parsable<E> {
 	private Class<E> cls;
 	private String className;
 	private ArrayList<Method> setters;
+	private Field[] fields;
 	private ArrayList<E> voList;
 	private E vo = null;
 	private String text = null;;
@@ -26,10 +29,20 @@ public class SAXParserHandler<E> extends DefaultHandler implements Parsable<E> {
 	public SAXParserHandler(Class<E> cls) {
 		this.cls = cls;
 		className = cls.getName();
-		setters = getSetters(cls.getMethods());
+		setters = getSetters(cls.getDeclaredMethods());
+		fields = cls.getDeclaredFields();
+//		fieldTypes = getFieldTypes(cls.getDeclaredFields());
 		voList = new ArrayList<E>();
 	}
 
+	private ArrayList<String> getFieldTypes(Field[] fields) {
+		ArrayList<String> list = new ArrayList<String>();
+		for(Field field : fields) {
+			list.add(field.getType().getName());
+		}
+		return list;
+	}
+	
 	private ArrayList<Method> getSetters(Method[] methods) {
 		ArrayList<Method> list = new ArrayList<Method>();
 		for (Method m : methods) {
@@ -72,10 +85,15 @@ public class SAXParserHandler<E> extends DefaultHandler implements Parsable<E> {
 		}
 		
 		for (Method setter : setters) {
-			if (qName.toLowerCase().equals(setter.getName().substring(3).toLowerCase())) {
+			String tagNameLower = qName.toLowerCase();
+			String fieldNameLower = setter.getName().substring(3).toLowerCase();
+			if (tagNameLower.equals(fieldNameLower)) {
+				
+				Class<?> type = getFieldType(tagNameLower);
+				
 				try {
-					setter.invoke(vo, text);
-				} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+					setter.invoke(vo, parseStringData(text, type.newInstance()));
+				} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | InstantiationException e) {
 					e.printStackTrace();
 				}
 				break;
@@ -84,7 +102,34 @@ public class SAXParserHandler<E> extends DefaultHandler implements Parsable<E> {
 		
 	}
 	
+	private Boolean parseStringData(String data, Boolean bool) {
+		return Boolean.parseBoolean(data);
+	}
+	
+	private Integer parseStringData(String data, Integer integer) {
+		return Integer.parseInt(data);
+	}
 
+	private Double parseStringData(String data, Double doub) {
+		return Double.parseDouble(data);
+	}
+	
+	private Object parseStringData(String data, Object obj) {
+		return obj;
+	}
+
+	private Class<?> getFieldType(String tagNameLower) {
+		Class<?> type = null;
+		for (Field field : fields) {
+			if(tagNameLower.equals(field.getName().toLowerCase())) {
+				type = field.getType().getClass();
+				break;
+			}
+		}
+		
+		return type;
+	}
+	
 	@Override
     public void characters(char[] ch, int start, int length) throws SAXException {
          text = String.copyValueOf(ch, start, length).trim();
@@ -92,6 +137,7 @@ public class SAXParserHandler<E> extends DefaultHandler implements Parsable<E> {
 	
 	@Override
 	public List<E> parse(File file) {
+		ArrayList<E> voList = new ArrayList<E>();
 		SAXParserFactory parserFactory = SAXParserFactory.newInstance();
 		SAXParser parser = null;
 		try {
@@ -99,7 +145,14 @@ public class SAXParserHandler<E> extends DefaultHandler implements Parsable<E> {
 		} catch (ParserConfigurationException | SAXException e) {
 			e.printStackTrace();
 		}
-		return null;
+		try {
+			parser.parse(file, this);
+		} catch (SAXException | IOException e) {
+			e.printStackTrace();
+		}
+		return voList;
 	}
 
+	
+	
 }

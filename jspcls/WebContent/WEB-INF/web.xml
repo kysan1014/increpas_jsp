@@ -16,6 +16,11 @@
 		<servlet-name>resrc</servlet-name>
 		<servlet-class>controller.Resrc</servlet-class>
 	</servlet>
+	<!-- *.cls로 들어오는 모든 요청 서블릿 -->
+	<servlet>
+		<servlet-name>clsDispatch</servlet-name>
+		<servlet-class>com.increpas.cls.dispatch.ClsDispatch</servlet-class>
+	</servlet>
 	
 	<!-- 정의된 서블릿 매핑 -->
 	<servlet-mapping>
@@ -23,5 +28,11 @@
 		<url-pattern>/css/*</url-pattern>
 		<url-pattern>/js/*</url-pattern>
 		<url-pattern>/img/*</url-pattern>
+	</servlet-mapping>
+	
+	<!-- .cls로 요청하는 서블릿 매핑 -->
+	<servlet-mapping>
+		<servlet-name>clsDispatch</servlet-name>
+		<url-pattern>*.cls</url-pattern>
 	</servlet-mapping>
 </web-app>

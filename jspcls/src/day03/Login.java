@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/day03/login.cls")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private final String LOGIN_PAGE_PATH = "/WEB-INF/views/day03/Login.jsp";
+	private final String LOGIN_PAGE_PATH = "/WEB-INF/views/day03/pre/Login.jsp";
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)

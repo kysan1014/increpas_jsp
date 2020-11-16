@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/jspcls/css/w3.css">
 <link rel="stylesheet" type="text/css" href="/jspcls/css/cls.css">
 <script type="text/javascript" src="/jspcls/js/jquery-3.5.1.min.js"></script>
-<script type="text/javascript" src="/jspcls/js/login/Login.js"></script>
+<script type="text/javascript" src="/jspcls/js/member/login.js"></script>
 <style>
 	label {
 		font-size: 16pt;
@@ -23,7 +23,7 @@
 </head>
 <body>
 
-	<form method="post" action="http://localhost:80/jspcls/access/login.cls" class="w3-hide">
+	<form method="post" action="http://localhost:80/jspcls/member/loginProc.cls" class="w3-hide">
 		<input type="text" id="fid" name="id">
 		<input type="text" id="fpw" name="pw">
 		<input type="submit" id="submit">
