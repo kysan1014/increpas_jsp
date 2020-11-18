@@ -37,6 +37,9 @@ $(function() {
 			case 'rbtn':
 				spath = '/cls/reBoard/reBoardList.cls';
 				break;
+			case 'fbtn':
+				spath = '/cls/board/boardList.cls';
+				break;
 		}
 		$(location).attr("href", spath);
 	});
